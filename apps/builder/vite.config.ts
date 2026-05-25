@@ -1,6 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { sentryVitePlugin } from '@sentry/vite-plugin'
 import { visualizer } from 'rollup-plugin-visualizer'
 // import vue from '@vitejs/plugin-vue'
 // import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -11,18 +10,13 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: '/vbuilder/',
     plugins: [
         /* vue(), vueJsx(),  */
         vueDevTools(),
         veauryVitePlugins({ type: 'vue' }),
         visualizer({
-            open: true
-        }),
-        sentryVitePlugin({
-            org: 'heyi-o0',
-            project: 'javascript-vue',
-            authToken:
-                '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'
+            open: false
         })
     ],
     resolve: {
