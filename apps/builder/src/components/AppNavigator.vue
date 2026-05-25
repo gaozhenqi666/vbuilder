@@ -84,7 +84,7 @@ const Icon = defineComponent({
             </RouterLink>
             <div class="app-logo">
                 <img
-                    src="https://vuejs.org/images/logo.png"
+                    src="https://functions.prod.internal.glideapps.com/getEmoji/%E2%98%84%EF%B8%8F"
                 />
             </div>
             <h1 class="app-name">my-builder</h1>
