@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,10 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9.5.0
@@ -33,10 +34,17 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm --filter builder build
+
+      - name: Verify build output
+        run: |
+          echo "Build output:"
+          ls -la ./apps/builder/dist/
+          echo "---"
+          cat ./apps/builder/dist/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
